@@ -36,12 +36,13 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
             let ch_message="";
             let count=0;
             for(let i=0;i<message.length;i++){
-                if(count!=0&&count%num==0){
-                    ch_message=ch_message+'\r\n';
-                }
-                if(message[i]=='\r\n'){
+                if(message[i]=='\n'){
                     count=0;
+                    ch_message=ch_message+'\n';
                     continue;
+                }
+                if(count!=0&&count%num==0){
+                    ch_message=ch_message+'\n';
                 }
                 count++;
                 ch_message=ch_message+message[i];
@@ -53,6 +54,16 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
         const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
             this.setState({
                 message:e.target.value,
+            })
+        }
+        const handlenum=(e:React.ChangeEvent<HTMLInputElement>)=>{
+            let x=parseInt(e.target.value);
+            //console.log(x);
+            if(Number.isNaN(x)){
+                x=0;
+            }
+            this.setState({
+                num:x,
             })
         }
         return (
@@ -78,6 +89,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             label="N文字ごと"
                             placeholder="Placeholder"
                             margin="normal"
+                            onChange={handlenum}
                             value={this.state.num}
                         />
                         <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={insert_n}>
