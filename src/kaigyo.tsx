@@ -155,7 +155,8 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             onChange={handleChange}
                         />
                     </Grid>
-                    <Grid item xs={2} >
+                    <Grid item xs={1} >
+
                         <TextField
                             id="standard-basic"
                             label="N文字ごと"
