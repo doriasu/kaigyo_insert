@@ -51,6 +51,25 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
             this.setState({ch_message:ch_message});
 
         }
+        const ch_insert_n=()=>{
+            let message=this.state.message;
+            let num=this.state.num;
+            let ch_message="";
+            let count=0;
+            for(let i=0;i<message.length;i++){
+                if(message[i]=='\n'){
+                    continue;
+                }
+                if(count!=0&&count%num==0){
+                    ch_message=ch_message+'\n';
+                }
+                count++;
+                ch_message=ch_message+message[i];
+
+            }
+            this.setState({ch_message:ch_message});
+
+        }
         const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
             this.setState({
                 message:e.target.value,
@@ -82,7 +101,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             onChange={handleChange}
                         />
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} >
                         <TextField
                             id="standard-basic"
                             label="N文字ごと"
@@ -91,14 +110,18 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             onChange={handlenum}
                             value={this.state.num}
                         />
-                        <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={insert_n}>
-                            Go
+                        <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={ch_insert_n}>
+                            すでにある改行無視
+                        </Button>
+
+                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={insert_n}>
+                            無視しない
                         </Button>
                     </Grid>
                     <Grid item xs={5}>
                         <TextField
                             id="outlined-textarea"
-                            label="改行コードを挿入した文章がここに出力されます。"
+                            label="改行コードを挿入済"
                             multiline
                             rows="20"
                             fullWidth
