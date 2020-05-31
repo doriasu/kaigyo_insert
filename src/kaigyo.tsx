@@ -164,18 +164,18 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             onChange={handlenum}
                             value={this.state.num}
                         />
-                        <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={insert_n}>
-                            無視しない
+                        <Button variant="outlined" color="primary" style={{justifyContent:"center"}} onClick={insert_n}>
+                            改行無視しない
                         </Button>
-                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n}>
+                        <Button variant="outlined"  color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n}>
                             改行,空白無視
                         </Button>
 
-                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_han2zen}>
+                        <Button variant="outlined" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_han2zen}>
                             行末をそろえる
                         </Button>
-                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_maru}>
-                            。で改行
+                        <Button variant="outlined" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_maru}>
+                            。で改行する
                         </Button>
                     </Grid>
                     <Grid item xs={5}>
