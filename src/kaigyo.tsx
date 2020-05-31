@@ -53,6 +53,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
         }
         const ch_insert_n=()=>{
             let message=this.state.message;
+            message=message.replace(/\s+/g,"");
             let num=this.state.num;
             let ch_message="";
             let count=0;
@@ -111,7 +112,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             value={this.state.num}
                         />
                         <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={ch_insert_n}>
-                            すでにある改行無視
+                            改行,空白無視
                         </Button>
 
                         <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={insert_n}>
