@@ -6,17 +6,55 @@ import Typography from "@material-ui/core/Typography";
 import {Grid} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-class Kaigyo extends React.Component{
+interface IKaigyoProps{
+
+}
+interface IKaigyoState {
+    message:string;
+    num:number;
+    ch_message:string;
+
+}
+
+
+class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
+    constructor(props:IKaigyoProps) {
+        super(props);
+
+        this.state = {
+            message: '',
+            num:20,
+            ch_message:''
+        };
+
+    }
+
     public render(){
-        const classes = makeStyles((theme: Theme) =>
-            createStyles({
-                button:{
-                    justifyContent:"center",
+        const insert_n=()=>{
+            let message=this.state.message;
+            let num=this.state.num;
+            let ch_message="";
+            let count=0;
+            for(let i=0;i<message.length;i++){
+                if(count!=0&&count%num==0){
+                    ch_message=ch_message+'\r\n';
                 }
+                if(message[i]=='\r\n'){
+                    count=0;
+                    continue;
+                }
+                count++;
+                ch_message=ch_message+message[i];
 
-            }),
-        );
+            }
+            this.setState({ch_message:ch_message});
 
+        }
+        const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
+            this.setState({
+                message:e.target.value,
+            })
+        }
         return (
             <div>
                 <Grid container spacing={2}>
@@ -30,6 +68,8 @@ class Kaigyo extends React.Component{
                             fullWidth
                             margin="normal"
                             variant="outlined"
+                            value={this.state.message}
+                            onChange={handleChange}
                         />
                     </Grid>
                     <Grid item xs={2}>
@@ -38,8 +78,9 @@ class Kaigyo extends React.Component{
                             label="N文字ごと"
                             placeholder="Placeholder"
                             margin="normal"
+                            value={this.state.num}
                         />
-                        <Button variant="contained" color="primary" style={{justifyContent:"center"}}>
+                        <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={insert_n}>
                             Go
                         </Button>
                     </Grid>
@@ -53,6 +94,7 @@ class Kaigyo extends React.Component{
                             fullWidth
                             margin="normal"
                             variant="outlined"
+                            value={this.state.ch_message}
                         />
                     </Grid>
                 </Grid>
