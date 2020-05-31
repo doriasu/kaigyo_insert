@@ -141,7 +141,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
         }
         return (
             <div>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} style={{justifyContent:"center"}}>
                     <Grid item xs={5}>
                         <TextField
                             id="outlined-textarea"
@@ -191,6 +191,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             value={this.state.ch_message}
                         />
                     </Grid>
+
                 </Grid>
             </div>
         );
