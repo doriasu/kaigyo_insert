@@ -72,7 +72,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                     <Grid item xs={5}>
                         <TextField
                             id="outlined-textarea"
-                            label="Multiline Placeholder"
+                            label="文章を入力してください"
                             placeholder="Placeholder"
                             multiline
                             rows="20"
@@ -99,7 +99,7 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                     <Grid item xs={5}>
                         <TextField
                             id="outlined-textarea"
-                            label="Multiline Placeholder"
+                            label="改行コードを挿入した文章がここに出力されます。"
                             placeholder="Placeholder"
                             multiline
                             rows="20"
