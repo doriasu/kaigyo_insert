@@ -86,6 +86,36 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                 }
                 if(count!=0&&count%num==0){
                     ch_message=ch_message+'\n';
+                    count=0;
+                }
+                count++;
+                ch_message=ch_message+message[i];
+
+            }
+            this.setState({ch_message:ch_message});
+
+        }
+        const ch_insert_n_maru=()=>{
+            let message=this.state.message;
+            message=message.replace(/\s+/g,"");
+            message=message.replace(/[A-Za-z0-9]/g, function(s:string) {
+                return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
+            });
+            let num=this.state.num;
+            let ch_message="";
+            let count=0;
+            for(let i=0;i<message.length;i++){
+                if(message[i]=='\n'){
+                    continue;
+                }
+                if(message[i]=='。'){
+                    ch_message=ch_message+'。'+'\n';
+                    count=0;
+                    continue;
+                }
+                if(count!=0&&count%num==0){
+                    ch_message=ch_message+'\n';
+                    count=0;
                 }
                 count++;
                 ch_message=ch_message+message[i];
@@ -143,6 +173,9 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
 
                         <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_han2zen}>
                             行末をそろえる
+                        </Button>
+                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_maru}>
+                            。で改行
                         </Button>
                     </Grid>
                     <Grid item xs={5}>
