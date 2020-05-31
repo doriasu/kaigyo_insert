@@ -71,6 +71,29 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
             this.setState({ch_message:ch_message});
 
         }
+        const ch_insert_n_han2zen=()=>{
+            let message=this.state.message;
+            message=message.replace(/\s+/g,"");
+            message=message.replace(/[A-Za-z0-9]/g, function(s:string) {
+                return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
+            });
+            let num=this.state.num;
+            let ch_message="";
+            let count=0;
+            for(let i=0;i<message.length;i++){
+                if(message[i]=='\n'){
+                    continue;
+                }
+                if(count!=0&&count%num==0){
+                    ch_message=ch_message+'\n';
+                }
+                count++;
+                ch_message=ch_message+message[i];
+
+            }
+            this.setState({ch_message:ch_message});
+
+        }
         const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
             this.setState({
                 message:e.target.value,
@@ -111,12 +134,15 @@ class Kaigyo extends React.Component<IKaigyoProps,IKaigyoState>{
                             onChange={handlenum}
                             value={this.state.num}
                         />
-                        <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={ch_insert_n}>
+                        <Button variant="contained" color="primary" style={{justifyContent:"center"}} onClick={insert_n}>
+                            無視しない
+                        </Button>
+                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n}>
                             改行,空白無視
                         </Button>
 
-                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={insert_n}>
-                            無視しない
+                        <Button variant="contained" color="primary" style={{justifyContent:"center",marginTop:"10px"}} onClick={ch_insert_n_han2zen}>
+                            行末をそろえる
                         </Button>
                     </Grid>
                     <Grid item xs={5}>
